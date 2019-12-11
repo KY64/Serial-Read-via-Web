@@ -11,5 +11,7 @@ This is a simple example how to implement `Serial.Read()` in NodeJS using [Seria
 2. Open terminal on the downloaded repo directory
 3. Run `npm i` on terminal
 4. Run `sudo npm start`
-
 > This program hasn't been tested on Windows so you might need to figure out how to run it.
+## Credits
+- Icons from [flaticon]('https://www.flaticon.com/free-icon/analytics_2386150') by Good Ware
+- [Chart.js]('https://github.com/chartjs')
