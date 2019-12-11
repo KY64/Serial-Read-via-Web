@@ -5,32 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="A sample serial communication web app">
+    <meta name="theme-color" content="#2F3BA2" />
     <title>Temperature Chart</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="public/static/style.css" />
+    <link rel="manifest" href="public/manifest.json">
 </head>
 
 <body>
     <main>
         <div class="temp">
             <h5>Temperature (C)</h5>
-            <span style="display: block;border-top:3px solid rgba(230, 74, 25, 1);width:100%;margin: 10px auto 0 auto"></span>
+            <span
+                style="display: block;border-top:3px solid rgba(230, 74, 25, 1);width:100%;margin: 10px auto 0 auto"></span>
             <p id="temp">30</p>
         </div>
         <div class="adc">
             <h5>ADC</h5>
-            <span style="display: block;border-top:3px solid rgba(25, 118, 210, 1);width:100%;margin: 10px auto 0 auto"></span>
+            <span
+                style="display: block;border-top:3px solid rgba(25, 118, 210, 1);width:100%;margin: 10px auto 0 auto"></span>
             <p id="adc">100</p>
         </div>
         <div class="voltage">
             <h5>Voltage (mV)</h5>
-            <span style="display: block;border-top:3px solid rgba(255, 160, 0, 1);width:100%;margin: 10px auto 0 auto"></span>
+            <span
+                style="display: block;border-top:3px solid rgba(255, 160, 0, 1);width:100%;margin: 10px auto 0 auto"></span>
             <p id="voltage">9</p>
         </div>
         <div class="chart" style="width:70%; margin: 80px auto"><canvas id="chart"></canvas></div>
     </main>
+    <button id="butInstall" aria-label="Install" hidden>INSTALL</button>
 
-    <script src="chart.min.js"></script>
+    <script src="public/static/install.js"></script>
+    <script src="public/static/chart.min.js"></script>
     <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then((reg) => {
+                        console.log('Service worker registered.', reg);
+                    });
+            });
+        }
+
         var ctx = document.getElementById('chart').getContext('2d');
         var lineChart = new Chart(ctx, {
             type: 'line',
