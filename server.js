@@ -2,8 +2,8 @@ const express = require('express'),
       app = express(),
       redirectToHTTPS = require('express-http-to-https').redirectToHTTPS,
       SerialPort = require('serialport'),
-      port = new SerialPort('/dev/ttyUSB0', {
-    baudRate: 9600,
+      port = new SerialPort('/dev/ttyACM0', {
+    baudRate: 115200,
 }, err => {
     if(err != null) {
         console.log(err)
@@ -19,14 +19,15 @@ app.get('/data', (req,res) => {
     port.on('data', data => {
         data = JSON.stringify(data)
         data = JSON.parse(data)
-        stream = String.fromCharCode.apply(String, data.data).replace(/\0/g,'');
+        stream = String.fromCharCode.apply(String, data.data).replace(/\0\r\n/g,'');
         stream = stream.split("?")
-        // console.log(stream)
+        console.log(data)
+        if (stream.length > 3){
         stream = {
             "adc" : parseInt(stream[0]),
             "voltage" : parseFloat(stream[1]),
             "temp" : parseFloat(stream[2])
-        }
+        }}
     })
     res.json(stream)
 })
