@@ -1,4 +1,9 @@
 # Serial Read via Website
+
+<div align="center">
+[![Serial Web](./preview.png)]
+</div>
+
 ## Description
 This is a simple example how to implement `Serial.Read()` in NodeJS using [SerialPort]('https://serialport.io/') package. I use [ExpressJS]('https://expressjs.com/') to serve the HTML and send serial data to the web client by parsing it to JSON first.
 ## Requirements
