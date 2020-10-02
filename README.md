@@ -1,7 +1,7 @@
 # Serial Read via Website
 
 <div align="center">
-[![Serial Web](./preview.png)]
+<img src="preview.png" />
 </div>
 
 ## Description
